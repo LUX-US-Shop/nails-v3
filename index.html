@@ -6,7 +6,7 @@
 <title>GlowNails Studio — Free Beauty Giveaway 2026</title>
 <meta property="og:type" content="website" />
 <meta property="og:title" content="GlowNails Studio — Free Beauty Giveaway 2026" />
-<meta property="og:description" content="Free entry to win exclusive beauty rewards. US residents only. Limited spots." />
+<meta property="og:description" content="Win exclusive nail studio rewards. Free giveaway open to US residents. Spots filling fast." />
 <meta property="og:site_name" content="GlowNails Studio" />
 <meta property="og:url" content="https://nails-v3.pages.dev/" />
 <meta property="og:image" content="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCI+CjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCIgZmlsbD0iIzBmMGEwMCIvPgo8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9InJnYmEoMCwwLDAsMC4zOCkiLz4KPHRleHQgeD0iNjAwIiB5PSIyNTUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9Ijc0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2Y1OWUwYiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+R2xvd05haWxzIFN0dWRpbzwvdGV4dD4KPHRleHQgeD0iNjAwIiB5PSIzNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjQwIiBmaWxsPSIjZmNkMzRkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HbG93TmFpbHMgU3R1ZGlvIOKAlCBGcmVlIEJlYXV0eSBHaXZlYXdheSAyMDI2PC90ZXh0Pgo8dGV4dCB4PSI2MDAiIHk9IjQzNSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC41NSkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlVTIEV4Y2x1c2l2ZSDCtyBGcmVlIEVudHJ5IMK3IDIwMjY8L3RleHQ+Cjwvc3ZnPg==" />
@@ -20,8 +20,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: #0f0a00; font-family: 'DM Sans', sans-serif; height: 100vh; overflow: hidden; }
   .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; overflow: hidden; }
-  .particle { position: absolute; border-radius: 50%; animation: floatUp linear infinite; opacity: 0; }
-  @keyframes floatUp { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.15; } 100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } }
+  .particle { position: absolute; border-radius: 50%; animation: driftNails linear infinite; opacity: 0; }
+  @keyframes driftNails { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.15; } 100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } }
   .split-screen { position: relative; width: 100%; height: 100vh; overflow: hidden; display: flex; }
   .half { position: relative; height: 100%; overflow: hidden; text-decoration: none; flex: 1; transition: flex 0.6s cubic-bezier(0.77,0,0.18,1); cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .split-screen:hover .half.left:hover { flex: 1.25; }
@@ -48,14 +48,14 @@
   .half.right .half-amount { color: #fbbf24; text-shadow: 0 0 40px rgba(251,191,36,0.5); }
   .half-desc { font-size: clamp(12px,2vw,14px); color: rgba(253,248,242,0.55); margin-bottom: 12px; line-height: 1.55; }
   .half-counter { display: flex; align-items: center; gap: 7px; font-size: clamp(11px,1.9vw,13px); color: rgba(253,248,242,0.5); margin-bottom: 12px; }
-  .dot-live { width: 8px; height: 8px; border-radius: 50%; animation: livePulse 1.6s ease-in-out infinite; flex-shrink: 0; }
+  .dot-live { width: 8px; height: 8px; border-radius: 50%; animation: pulseDot3 1.6s ease-in-out infinite; flex-shrink: 0; }
   .half.left  .dot-live { background: #f59e0b;  box-shadow: 0 0 8px rgba(245,158,11,0.5); }
   .half.right .dot-live { background: #fbbf24; box-shadow: 0 0 8px rgba(251,191,36,0.5); }
-  @keyframes livePulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.7); opacity: 0.45; } }
+  @keyframes pulseDot3 { 0%,100% { transform: scale(1); } 50% { transform: scale(1.7); opacity: 0.45; } }
   .half-counter strong { color: #fdf8f2; }
   .half-timer { font-size: clamp(11px,1.9vw,13px); color: rgba(253,248,242,0.45); margin-bottom: 18px; display: flex; align-items: center; gap: 6px; }
-  .fire { animation: fireSway 1s ease-in-out infinite; display: inline-block; font-size: 15px; }
-  @keyframes fireSway { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+  .fire { animation: swayFlame3 1s ease-in-out infinite; display: inline-block; font-size: 15px; }
+  @keyframes swayFlame3 { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
   .countdown { font-weight: 800; font-family: monospace; letter-spacing: 1.5px; }
   .half.left  .countdown { color: #fde68a; }
   .half.right .countdown { color: #fcd34d; }
@@ -63,19 +63,19 @@
   .half:hover .half-btn { transform: scale(1); }
   .half.left  .half-btn { background: linear-gradient(135deg,#f59e0b,#d97706);  box-shadow: 0 8px 30px rgba(245,158,11,0.5); }
   .half.right .half-btn { background: linear-gradient(135deg,#fbbf24,#f59e0b); box-shadow: 0 8px 30px rgba(251,191,36,0.5); }
-  .half-btn::after { content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent); animation: shimmer 2.4s ease-in-out infinite; }
-  @keyframes shimmer { 0% { left: -100%; } 50%,100% { left: 110%; } }
+  .half-btn::after { content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent); animation: glowBtn3 2.4s ease-in-out infinite; }
+  @keyframes glowBtn3 { 0% { left: -100%; } 50%,100% { left: 110%; } }
   .btn-sub { font-size: clamp(9px,1.5vw,11px); opacity: 0.72; font-weight: 600; display: block; margin-top: 3px; letter-spacing: 0.8px; }
   .divider-wrap { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; z-index: 10; pointer-events: none; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.4s ease; }
   .split-screen:hover .divider-wrap { opacity: 0; }
-  .divider-line { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 1.5px; background: linear-gradient(180deg, transparent 0%, rgba(255,200,180,0.25) 10%, rgba(255,255,255,0.7) 50%, rgba(255,200,180,0.25) 90%, transparent 100%); animation: lineFade 2.8s ease-in-out infinite; }
-  @keyframes lineFade { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
-  .center-badge { background: linear-gradient(135deg,#d97706,#f59e0b,#d97706); color: #1c1003; font-size: clamp(7px,1.4vw,9px); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; padding: 8px 13px; border-radius: 20px; white-space: nowrap; animation: badgeBeat 2.2s ease-in-out infinite; position: relative; z-index: 1; }
-  @keyframes badgeBeat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.09); } }
+  .divider-line { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 1.5px; background: linear-gradient(180deg, transparent 0%, rgba(255,200,180,0.25) 10%, rgba(255,255,255,0.7) 50%, rgba(255,200,180,0.25) 90%, transparent 100%); animation: fadeLine3 2.8s ease-in-out infinite; }
+  @keyframes fadeLine3 { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+  .center-badge { background: linear-gradient(135deg,#d97706,#f59e0b,#d97706); color: #1c1003; font-size: clamp(7px,1.4vw,9px); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; padding: 8px 13px; border-radius: 20px; white-space: nowrap; animation: beatBadge3 2.2s ease-in-out infinite; position: relative; z-index: 1; }
+  @keyframes beatBadge3 { 0%,100% { transform: scale(1); } 50% { transform: scale(1.09); } }
   .topbar { position: absolute; top: 0; left: 0; right: 0; z-index: 15; padding: clamp(10px,1.8vw,16px); display: flex; justify-content: center; pointer-events: none; }
   .topbar-text { font-size: clamp(9px,1.7vw,11px); color: rgba(253,248,242,0.45); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; background: rgba(0,0,0,0.5); padding: 5px 18px; border-radius: 12px; backdrop-filter: blur(10px); }
-  .hint { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -170%); z-index: 12; font-size: clamp(10px,1.8vw,12px); color: rgba(253,248,242,0.25); letter-spacing: 2px; text-transform: uppercase; pointer-events: none; white-space: nowrap; animation: hintGlow 3.2s ease-in-out infinite; }
-  @keyframes hintGlow { 0%,100% { opacity: 0.25; } 50% { opacity: 0.55; } }
+  .hint { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -170%); z-index: 12; font-size: clamp(10px,1.8vw,12px); color: rgba(253,248,242,0.25); letter-spacing: 2px; text-transform: uppercase; pointer-events: none; white-space: nowrap; animation: glowHint3 3.2s ease-in-out infinite; }
+  @keyframes glowHint3 { 0%,100% { opacity: 0.25; } 50% { opacity: 0.55; } }
   .trust-bar { position: absolute; bottom: 0; left: 0; right: 0; z-index: 15; display: flex; justify-content: center; gap: clamp(12px,3.5vw,32px); padding: clamp(9px,1.6vh,14px); background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); border-top: 1px solid rgba(255,255,255,0.04); pointer-events: none; }
   .trust-item { display: flex; align-items: center; gap: 5px; font-size: clamp(9px,1.6vw,11px); color: rgba(253,248,242,0.3); letter-spacing: 0.5px; text-transform: uppercase; }
   .trust-item span { font-size: clamp(12px,2.2vw,14px); }
@@ -83,8 +83,8 @@
 </style>
 </head>
 <body>
-<div class="particles" id="particles"></div>
-<div class="split-screen" id="splitScreen">
+<div class="n3ptc" id="n3ptc"></div>
+<div class="split-screen" id="n3ss">
   <div class="topbar"><div class="topbar-text">✦ GlowNails Studio Free Rewards 2026 ✦</div></div>
   <div class="hint">← &nbsp; choose your reward &nbsp; →</div>
 
@@ -95,8 +95,8 @@
       <div class="half-brand">Sephora</div>
       <div class="half-amount">$500</div>
       <div class="half-desc">Enter to win a $500 Sephora gift card.<br>Free entry, US residents only.</div>
-      <div class="half-counter"><div class="dot-live"></div><span><strong id="cnt1">4,821</strong> entries today</span></div>
-      <div class="half-timer"><span class="fire">🔥</span><span>Offer ends in&nbsp;<span class="countdown" id="timer1">23:47:12</span></span></div>
+      <div class="half-counter"><div class="dot-live"></div><span><strong id="n3c1">4,821</strong> entries today</span></div>
+      <div class="half-timer"><span class="fire">🔥</span><span>Offer ends in&nbsp;<span class="countdown" id="n3t1">23:47:12</span></span></div>
       <button class="half-btn">Enter Now →<span class="btn-sub">Free • No Purchase Required</span></button>
     </div>
   </a>
@@ -108,15 +108,15 @@
       <div class="half-brand">Maybelline</div>
       <div class="half-amount">FREE</div>
       <div class="half-desc">Test & keep a Maybelline makeup set.<br>Free entry, US residents only.</div>
-      <div class="half-counter"><div class="dot-live"></div><span><strong id="cnt2">3,197</strong> entries today</span></div>
-      <div class="half-timer"><span class="fire">🔥</span><span>Offer ends in&nbsp;<span class="countdown" id="timer2">23:47:12</span></span></div>
+      <div class="half-counter"><div class="dot-live"></div><span><strong id="n3c2">3,197</strong> entries today</span></div>
+      <div class="half-timer"><span class="fire">🔥</span><span>Offer ends in&nbsp;<span class="countdown" id="n3t2">23:47:12</span></span></div>
       <button class="half-btn">Claim Now →<span class="btn-sub">Free • No Purchase Required</span></button>
     </div>
   </a>
 
   <div class="divider-wrap">
     <div class="divider-line"></div>
-    <div class="center-badge">Choose Your Reward</div>
+    <div class="center-badge">Grab Your Gift</div>
   </div>
   <div class="trust-bar">
     <div class="trust-item"><span>🔒</span> Secure</div>
@@ -128,7 +128,7 @@
 </div>
 
 <script>
-const pc = document.getElementById("particles");
+const pc = document.getElementById("n3ptc");
 const pColors = ["#fde68a", "#fef3c7", "#fcd34d", "#fef9c3", "#ffffff", "#fffbeb"];
 for (let i = 0; i < 28; i++) {
   const p = document.createElement("div"); p.className = "particle";
@@ -144,14 +144,14 @@ function makeTimer(id,s){
     el.textContent=String(Math.floor(s/3600)).padStart(2,"0")+":"+String(Math.floor((s%3600)/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
   },1000);
 }
-makeTimer("timer1",85632); makeTimer("timer2",79841);
+makeTimer("n3t1",85632); makeTimer("n3t2",79841);
 function animateCounter(id,base){
   const el=document.getElementById(id);
   setInterval(()=>{if(Math.random()<0.3){base+=Math.floor(Math.random()*3)+1;el.textContent=base.toLocaleString();}
   },4000);
 }
-animateCounter("cnt1",4821); animateCounter("cnt2",3197);
-const left=document.querySelector(".half.left"),right=document.querySelector(".half.right"),ss=document.getElementById("splitScreen");
+animateCounter("n3c1",4821); animateCounter("n3c2",3197);
+const left=document.querySelector(".half.left"),right=document.querySelector(".half.right"),ss=document.getElementById("n3ss");
 let ah=null,tsx=0,tsy=0;
 ss.addEventListener("touchstart",e=>{tsx=e.touches[0].clientX;tsy=e.touches[0].clientY;},{passive:true});
 ss.addEventListener("touchmove",e=>{
