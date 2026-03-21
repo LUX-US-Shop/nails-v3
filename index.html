@@ -165,22 +165,6 @@ ss.addEventListener("touchmove",e=>{
   if(ah!==el){e.preventDefault();ah=el;left.style.flex=el===left?"1.68":"0.52";right.style.flex=el===right?"1.68":"0.52";}
 },{passive:false}));
 
-const OFFERS = {
-  left:  "https://afflat3e3.com/trk/lnk/80DBA135-99F1-423A-BFAD-362D7DE2F22F/?o=25408&c=918277&a=785920&k=5CBFF1D0E031B44EDD88D710F2E25BBF&l=26617&s1=pinterest&s2=acc5_sephora",
-  right: "https://afflat3e1.com/trk/lnk/80DBA135-99F1-423A-BFAD-362D7DE2F22F/?o=24725&c=918277&a=785920&k=EABA47741A4D32E13B8641F7E2236D72&l=25813&s1=pinterest&s2=acc5_maybelline"
-};
-if(window.location.pathname==="/go"){
-  const k=new URLSearchParams(window.location.search).get("offer");
-  if(OFFERS[k]) window.location.replace(OFFERS[k]);
-}
-document.querySelector(".half.left").addEventListener("click",e=>{
-  e.preventDefault(); trackClick("nails-v3","sephora","acc5");
-  window.location.href=OFFERS.left;
-});
-document.querySelector(".half.right").addEventListener("click",e=>{
-  e.preventDefault(); trackClick("nails-v3","maybelline","acc5");
-  window.location.href=OFFERS.right;
-});
 
 var GS_URL="https://script.google.com/macros/s/AKfycbzdeXJryOigbdw927k4uMu5u2TMb5x2543BjKkmiBSiv_5XCxnTC3LlNdG7wT59_89U/exec";
 function trackClick(landing,offer,acc){
