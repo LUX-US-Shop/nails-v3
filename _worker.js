@@ -19,13 +19,13 @@ const OFFERS = {
   covergirl:  `https://afflat3e1.com/trk/lnk/${TRK}/?o=24943&${AFF}&k=F8DF108A7BCAE8B583248B326A96C8FF&l=26034&s1=pinterest&s2=`,
 };
 
-const CRAK = {
-  left:  "https://t.datsk11.com/403634/9144/37522?aff_sub=",
-  right: "https://t.datsk11.com/403634/7412?aff_sub=",
-};
+const SEXYFANS = "https://t.datsk11.com/403634/9144/37522?aff_sub=";
+const COURSE_EN = "https://ailuxlab.lemonsqueezy.com/checkout/buy/0db66c39-5933-4f6d-8526-7209e80f6c6a";
 
 const DOMAIN_OFFERS = {
-  "beauty-nails-bbw.pages.dev": {
+
+  // NAILS
+  "nails-v1.pages.dev": {
     left:  { url: OFFERS.maybelline, suffix: "_maybelline" },
     right: { url: OFFERS.bathbody,   suffix: "_bathbody"   },
     defaultAcc: "acc1",
@@ -40,7 +40,9 @@ const DOMAIN_OFFERS = {
     right: { url: OFFERS.maybelline, suffix: "_maybelline" },
     defaultAcc: "acc5",
   },
-  "hair-rewards.pages.dev": {
+
+  // HAIR
+  "hair-v1.pages.dev": {
     left:  { url: OFFERS.covergirl,  suffix: "_covergirl"  },
     right: { url: OFFERS.maybelline, suffix: "_maybelline" },
     defaultAcc: "acc6",
@@ -55,7 +57,9 @@ const DOMAIN_OFFERS = {
     right: { url: OFFERS.sephora,    suffix: "_sephora"  },
     defaultAcc: "acc16",
   },
-  "glam-rewards.pages.dev": {
+
+  // GLAM
+  "glam-v1.pages.dev": {
     left:  { url: OFFERS.sephora,   suffix: "_sephora"   },
     right: { url: OFFERS.covergirl, suffix: "_covergirl" },
     defaultAcc: "acc8",
@@ -70,15 +74,17 @@ const DOMAIN_OFFERS = {
     right: { url: OFFERS.bathbody,   suffix: "_bathbody"   },
     defaultAcc: "acc10",
   },
-  "ai-girls.pages.dev": {
-    left:  { url: CRAK.left,  suffix: "" },
-    right: { url: CRAK.right, suffix: "" },
-    defaultAcc: "dating_acc3",
+
+  // AI GIRLS
+  "ai-girls-v1.pages.dev": {
+    left:  { url: SEXYFANS,  suffix: "", type: "dating" },
+    right: { url: COURSE_EN, suffix: "", type: "course" },
+    defaultAcc: "acc3",
   },
-  "dating-v2.pages.dev": {
-    left:  { url: CRAK.left,  suffix: "" },
-    right: { url: CRAK.right, suffix: "" },
-    defaultAcc: "dating_acc4",
+  "ai-girls-v2.pages.dev": {
+    left:  { url: SEXYFANS,  suffix: "", type: "dating" },
+    right: { url: COURSE_EN, suffix: "", type: "course" },
+    defaultAcc: "acc4",
   },
 };
 
@@ -115,11 +121,22 @@ export default {
         return new Response("Not found", { status: 404 });
       }
 
-      const { url: offerUrl, suffix } = domainCfg[side];
+      const offerCfg = domainCfg[side];
       const accId = acc || domainCfg.defaultAcc;
-      const s2 = suffix ? accId + suffix : accId;
 
-      return Response.redirect(offerUrl + s2, 302);
+      // Курс — редирект без s2
+      if (offerCfg.type === "course") {
+        return Response.redirect(offerCfg.url, 302);
+      }
+
+      // Dating — s2 = accId
+      if (offerCfg.type === "dating") {
+        return Response.redirect(offerCfg.url + accId, 302);
+      }
+
+      // Beauty — s2 = accId + suffix
+      const s2 = offerCfg.suffix ? accId + offerCfg.suffix : accId;
+      return Response.redirect(offerCfg.url + s2, 302);
     }
 
     // Всё остальное → лендинг (статика из Pages)
