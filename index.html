@@ -100,7 +100,6 @@
 /* ── Reset ───────────────────────────────────────────────── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --ease-out:cubic-bezier(0.23,1,0.32,1);--ease-inout:cubic-bezier(0.77,0,0.175,1);
   --bg:  #06040C;
   --bg2: #0D0916;
   --bg3: #141020;
@@ -116,6 +115,8 @@
   --text3: rgba(245,239,230,.38);
   --line:  rgba(255,255,255,.07);
   --r: 12px;
+  --ease-out: cubic-bezier(0.23,1,0.32,1);
+  --ease-inout: cubic-bezier(0.77,0,0.175,1);
   --serif: 'Cormorant Garamond', Georgia, serif;
   --sans:  'Inter', system-ui, sans-serif;
 }
@@ -253,7 +254,7 @@ body::before{
   background:var(--bg2);
   border:1px solid var(--line);
   border-radius:20px;overflow:hidden;
-  transition:border-color .25s ease,transform .3s var(--ease-out);
+  transition:border-color .3s ease,transform .3s var(--ease-out);
   position:relative;
 }
 .card-feat:hover{
@@ -340,8 +341,8 @@ body::before{
   transition:transform .2s var(--ease-out),box-shadow .2s ease;
   margin-bottom:8px;
 }
-.cf-btn:active{transform:scale(0.97)}
 .cf-btn:hover{transform:scale(1.02);box-shadow:0 10px 32px rgba(244,114,182,.45)}
+.cf-btn:active{transform:scale(0.97)}
 .cf-btn-arrow{transition:transform .2s var(--ease-out)}
 .cf-btn:hover .cf-btn-arrow{transform:translateX(4px)}
 .cf-prime{font-size:10px;color:var(--text3);text-align:center}
@@ -359,7 +360,7 @@ body::before{
   background:var(--bg2);
   border:1px solid var(--line);
   border-radius:16px;overflow:hidden;
-  transition:border-color .25s ease,transform .3s var(--ease-out);
+  transition:border-color .3s ease,transform .3s var(--ease-out);
 }
 .card-reg:hover{
   border-color:var(--bord);
@@ -677,10 +678,9 @@ body::before{
 .pt64{padding-top:64px} .pb64{padding-bottom:64px}
 .mt24{margin-top:24px}
 
+/* ── Reduced motion ─────────────────────────────────────── */
 @media(prefers-reduced-motion:reduce){
-  [data-aos],[data-aos].aos-in{transition:none}
-  .btn-primary,.cf-btn,.card-feat,.card-rank,.cf-img-wrap img{transition:none}
-  .btn-primary::after{animation:none}
+  [data-aos],.btn-primary,.cf-btn,.cf-btn-arrow,.card-feat,.card-reg,.cf-img-wrap img,.cr-img-wrap img{transition:none !important;animation:none !important}
 }
 </style>
 </head>
@@ -786,7 +786,7 @@ body::before{
       <span class="cr-rt">4.8 · 40K+ reviews</span>
     </div>
     <a href="https://www.amazon.com/dp/B071JCS34H?tag=beautyfi06ecc-20" class="cr-btn" target="_blank" rel="nofollow noopener noreferrer">
-      View on Amazon →
+      Check Price →
     </a>
   </div>
 </article>
@@ -805,7 +805,7 @@ body::before{
       <span class="cr-rt">4.5 · 9K reviews</span>
     </div>
     <a href="https://www.amazon.com/dp/B0F25V62Q1?tag=beautyfi06ecc-20" class="cr-btn" target="_blank" rel="nofollow noopener noreferrer">
-      View on Amazon →
+      Check Price →
     </a>
   </div>
 </article>
@@ -891,7 +891,7 @@ body::before{
       <span class="cr-rt">4.6 · 14K reviews</span>
     </div>
     <a href="https://www.amazon.com/dp/B0FKN9RJFJ?tag=beautyfi06ecc-20" class="cr-btn" target="_blank" rel="nofollow noopener noreferrer">
-      View on Amazon →
+      Check Price →
     </a>
   </div>
 </article>
@@ -910,7 +910,7 @@ body::before{
       <span class="cr-rt">4.5 · 7K reviews</span>
     </div>
     <a href="https://www.amazon.com/dp/B0CP53NK42?tag=beautyfi06ecc-20" class="cr-btn" target="_blank" rel="nofollow noopener noreferrer">
-      View on Amazon →
+      Check Price →
     </a>
   </div>
 </article>
@@ -929,7 +929,7 @@ body::before{
       <span class="cr-rt">4.5 · 11K reviews</span>
     </div>
     <a href="https://www.amazon.com/dp/B0D86BGCBJ?tag=beautyfi06ecc-20" class="cr-btn" target="_blank" rel="nofollow noopener noreferrer">
-      View on Amazon →
+      Check Price →
     </a>
   </div>
 </article>
@@ -990,7 +990,7 @@ body::before{
       <span class="cr-rt">4.7 · 25K reviews</span>
     </div>
     <a href="https://www.amazon.com/dp/B08J9WZB29?tag=beautyfi06ecc-20" class="cr-btn" target="_blank" rel="nofollow noopener noreferrer">
-      View on Amazon →
+      Check Price →
     </a>
   </div>
 </article>
@@ -1009,7 +1009,7 @@ body::before{
       <span class="cr-rt">4.8 · 28K+ reviews</span>
     </div>
     <a href="https://www.amazon.com/dp/B0034EAJJ6?tag=beautyfi06ecc-20" class="cr-btn" target="_blank" rel="nofollow noopener noreferrer">
-      View on Amazon →
+      Check Price →
     </a>
   </div>
 </article>
@@ -1028,7 +1028,7 @@ body::before{
       <span class="cr-rt">4.6 · 16K reviews</span>
     </div>
     <a href="https://www.amazon.com/dp/B07GXKXTBD?tag=beautyfi06ecc-20" class="cr-btn" target="_blank" rel="nofollow noopener noreferrer">
-      View on Amazon →
+      Check Price →
     </a>
   </div>
 </article>
@@ -1161,20 +1161,30 @@ document.getElementById('exit-overlay').addEventListener('click', function(e){
   if(e.target === this) closeExit();
 });
 
+// ── Email submit ──────────────────────────────────────────────────
+function handleEmailSubmit(){
+  var email = document.getElementById('email-input').value.trim();
+  if(!email || !email.includes('@')){ alert('Please enter a valid email address.'); return; }
+  fetch('https://script.google.com/macros/s/AKfycbxTnxPi9NM2UMS2STc3cYKUYpZC90HTCL5RYWIX8rKLseaEYXH8nr1yMLroba7RYpOA/exec', {
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({email:email, page:'nails-v3.html', ts:new Date().toISOString()})
+  });
+  document.querySelector('.email-form').style.display='none';
+  document.getElementById('email-success').style.display='block';
+}
 
-// ── Analytics ─────────────────────────────────────────────────
+// ── Analytics ─────────────────────────────────────────────────────
 var _GAS='https://script.google.com/macros/s/AKfycbxTnxPi9NM2UMS2STc3cYKUYpZC90HTCL5RYWIX8rKLseaEYXH8nr1yMLroba7RYpOA/exec';
 var _acc=(new URLSearchParams(window.location.search)).get('acc')||'direct';
 var _utm=(new URLSearchParams(window.location.search)).get('utm_source')||'direct';
-var _page=location.hostname.replace('.pages.dev','').replace('www.','');
-
+var _pg=location.hostname.replace('.pages.dev','').replace('www.','');
 function gasTrack(data){
   try{fetch(_GAS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(Object.assign({acc:_acc,page:_page,utm_source:_utm,ts:new Date().toISOString()},data))});}catch(e){}
+    body:JSON.stringify(Object.assign({acc:_acc,page:_pg,utm_source:_utm,ts:new Date().toISOString()},data))})}catch(e){}
 }
-
 gasTrack({event:'pageview'});
-
 document.addEventListener('click',function(e){
   var btn=e.target.closest('.cf-btn,.btn-primary,[href*="amazon.com"]');
   if(!btn) return;
@@ -1185,15 +1195,6 @@ document.addEventListener('click',function(e){
   document.querySelectorAll('.cf-btn,[href*="amazon.com/dp"]').forEach(function(b,i){if(b===btn)pos=i+1;});
   gasTrack({event:'click',asin:asin,position:pos});
 });
-// ─────────────────────────────────────────────────────────────
-// ── Email submit ──────────────────────────────────────────────────
-function handleEmailSubmit(){
-  var email = document.getElementById('email-input').value.trim();
-  if(!email || !email.includes('@')){ alert('Please enter a valid email address.'); return; }
-  gasTrack({event:'email',email:email});
-  document.querySelector('.email-form').style.display='none';
-  document.getElementById('email-success').style.display='block';
-}
 
 </script>
 </body>
