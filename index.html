@@ -100,6 +100,7 @@
 /* ── Reset ───────────────────────────────────────────────── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
+  --ease-out:cubic-bezier(0.23,1,0.32,1);--ease-inout:cubic-bezier(0.77,0,0.175,1);
   --bg:  #06040C;
   --bg2: #0D0916;
   --bg3: #141020;
@@ -132,7 +133,7 @@ body::before{
 }
 
 /* ── AOS (scroll fade) ───────────────────────────────────── */
-[data-aos]{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+[data-aos]{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s var(--ease-out)}
 [data-aos].aos-in{opacity:1;transform:none}
 
 /* ── Topbar ──────────────────────────────────────────────── */
@@ -200,9 +201,10 @@ body::before{
   font-size:16px;font-weight:700;
   border-radius:50px;letter-spacing:.3px;
   box-shadow:0 10px 40px rgba(244,114,182,.35);
-  transition:transform .22s,box-shadow .22s;
+  transition:transform .2s var(--ease-out),box-shadow .2s ease;
   position:relative;overflow:hidden;
 }
+.btn-primary:active{transform:scale(0.97)}
 .btn-primary::after{
   content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
@@ -251,7 +253,7 @@ body::before{
   background:var(--bg2);
   border:1px solid var(--line);
   border-radius:20px;overflow:hidden;
-  transition:border-color .3s,box-shadow .3s,transform .3s;
+  transition:border-color .25s ease,transform .3s var(--ease-out);
   position:relative;
 }
 .card-feat:hover{
@@ -274,7 +276,7 @@ body::before{
 .cf-img-wrap img{
   width:100%;height:100%;object-fit:contain;
   padding:16px;background:#fff;
-  transition:transform .4s;
+  transition:transform .35s var(--ease-out);
 }
 .card-feat:hover .cf-img-wrap img{transform:scale(1.04)}
 
@@ -335,11 +337,12 @@ body::before{
   color:#fff;font-size:14px;font-weight:700;
   border-radius:50px;
   box-shadow:0 6px 24px rgba(244,114,182,.3);
-  transition:transform .2s,box-shadow .2s;
+  transition:transform .2s var(--ease-out),box-shadow .2s ease;
   margin-bottom:8px;
 }
+.cf-btn:active{transform:scale(0.97)}
 .cf-btn:hover{transform:scale(1.02);box-shadow:0 10px 32px rgba(244,114,182,.45)}
-.cf-btn-arrow{transition:transform .2s}
+.cf-btn-arrow{transition:transform .2s var(--ease-out)}
 .cf-btn:hover .cf-btn-arrow{transform:translateX(4px)}
 .cf-prime{font-size:10px;color:var(--text3);text-align:center}
 
@@ -356,7 +359,7 @@ body::before{
   background:var(--bg2);
   border:1px solid var(--line);
   border-radius:16px;overflow:hidden;
-  transition:border-color .3s,box-shadow .3s,transform .3s;
+  transition:border-color .25s ease,transform .3s var(--ease-out);
 }
 .card-reg:hover{
   border-color:var(--bord);
@@ -370,7 +373,7 @@ body::before{
 .cr-img-wrap img{
   width:100%;height:100%;object-fit:contain;
   padding:12px;background:#fff;
-  transition:transform .4s;
+  transition:transform .35s var(--ease-out);
 }
 .card-reg:hover .cr-img-wrap img{transform:scale(1.05)}
 .cr-rank{
@@ -673,6 +676,12 @@ body::before{
 /* ── Spacing utilities ───────────────────────────────────── */
 .pt64{padding-top:64px} .pb64{padding-bottom:64px}
 .mt24{margin-top:24px}
+
+@media(prefers-reduced-motion:reduce){
+  [data-aos],[data-aos].aos-in{transition:none}
+  .btn-primary,.cf-btn,.card-feat,.card-rank,.cf-img-wrap img{transition:none}
+  .btn-primary::after{animation:none}
+}
 </style>
 </head>
 <body>
@@ -732,7 +741,7 @@ body::before{
       <span class="cf-rt">4.8 · 32K+ reviews</span>
     </div>
     <a href="https://www.amazon.com/dp/B07VWL6DXB?tag=beautyfi06ecc-20" class="cf-btn" target="_blank" rel="nofollow noopener noreferrer">
-      View on Amazon <span class="cf-btn-arrow">→</span>
+      Check Price <span class="cf-btn-arrow">→</span>
     </a>
     <span class="cf-prime">✦ Usually ships with Prime</span>
   </div>
@@ -755,7 +764,7 @@ body::before{
       <span class="cf-rt">4.7 · 18K reviews</span>
     </div>
     <a href="https://www.amazon.com/dp/B0F2N91KM9?tag=beautyfi06ecc-20" class="cf-btn" target="_blank" rel="nofollow noopener noreferrer">
-      View on Amazon <span class="cf-btn-arrow">→</span>
+      Check Price <span class="cf-btn-arrow">→</span>
     </a>
     <span class="cf-prime">✦ Usually ships with Prime</span>
   </div>
@@ -1152,16 +1161,36 @@ document.getElementById('exit-overlay').addEventListener('click', function(e){
   if(e.target === this) closeExit();
 });
 
+
+// ── Analytics ─────────────────────────────────────────────────
+var _GAS='https://script.google.com/macros/s/AKfycbxTnxPi9NM2UMS2STc3cYKUYpZC90HTCL5RYWIX8rKLseaEYXH8nr1yMLroba7RYpOA/exec';
+var _acc=(new URLSearchParams(window.location.search)).get('acc')||'direct';
+var _utm=(new URLSearchParams(window.location.search)).get('utm_source')||'direct';
+var _page=location.hostname.replace('.pages.dev','').replace('www.','');
+
+function gasTrack(data){
+  try{fetch(_GAS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(Object.assign({acc:_acc,page:_page,utm_source:_utm,ts:new Date().toISOString()},data))});}catch(e){}
+}
+
+gasTrack({event:'pageview'});
+
+document.addEventListener('click',function(e){
+  var btn=e.target.closest('.cf-btn,.btn-primary,[href*="amazon.com"]');
+  if(!btn) return;
+  var href=btn.getAttribute('href')||'';
+  var m=href.match(/\/dp\/([A-Z0-9]{10,})/);
+  var asin=m?m[1]:'cta';
+  var pos=0;
+  document.querySelectorAll('.cf-btn,[href*="amazon.com/dp"]').forEach(function(b,i){if(b===btn)pos=i+1;});
+  gasTrack({event:'click',asin:asin,position:pos});
+});
+// ─────────────────────────────────────────────────────────────
 // ── Email submit ──────────────────────────────────────────────────
 function handleEmailSubmit(){
   var email = document.getElementById('email-input').value.trim();
   if(!email || !email.includes('@')){ alert('Please enter a valid email address.'); return; }
-  fetch('https://script.google.com/macros/s/AKfycbxTnxPi9NM2UMS2STc3cYKUYpZC90HTCL5RYWIX8rKLseaEYXH8nr1yMLroba7RYpOA/exec', {
-    method:'POST',
-    mode:'no-cors',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({email:email, page:'nails-v3.html', ts:new Date().toISOString()})
-  });
+  gasTrack({event:'email',email:email});
   document.querySelector('.email-form').style.display='none';
   document.getElementById('email-success').style.display='block';
 }
