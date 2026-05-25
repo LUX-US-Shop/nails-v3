@@ -133,13 +133,6 @@ img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
 ul{list-style:none}
 
-/* ── Noise texture ───────────────────────────────────────── */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  opacity:.5;
-}
-
 /* ── AOS (scroll fade) ───────────────────────────────────── */
 [data-aos]{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s var(--ease-out)}
 [data-aos].aos-in{opacity:1;transform:none}
@@ -201,6 +194,7 @@ body::before{
 }
 .hero-badge strong{color:var(--gold)}
 .hero-cta-wrap{display:flex;flex-direction:column;align-items:center;gap:10px}
+.hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
 .btn-primary{
   display:inline-flex;align-items:center;gap:10px;
   padding:18px 44px;
@@ -220,6 +214,15 @@ body::before{
 }
 @keyframes shimmer{0%{left:-100%}60%,100%{left:110%}}
 .btn-primary:hover{transform:scale(1.03);box-shadow:0 14px 50px rgba(244,114,182,.5)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:16px 28px;border-radius:50px;
+  border:1px solid var(--bord);
+  background:rgba(255,255,255,.04);
+  color:var(--text);font-size:15px;font-weight:700;
+  transition:transform .2s var(--ease-out),border-color .2s ease,background .2s ease;
+}
+.btn-secondary:hover{transform:translateY(-2px);border-color:var(--acc);background:rgba(255,255,255,.07)}
 .hero-cta-note{font-size:11px;color:var(--text3)}
 
 /* ── Disclosure ──────────────────────────────────────────── */
@@ -228,6 +231,35 @@ body::before{
   background:rgba(201,160,110,.05);
   border:1px solid rgba(201,160,110,.1);
   border-radius:8px;font-size:11px;color:var(--text3);text-align:center;
+}
+
+/* ── Quick picks rail ────────────────────────────────────── */
+.quick-picks{padding:34px 0 16px}
+.quick-head{max-width:760px;margin:0 auto 22px;text-align:center}
+.quick-kicker{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.quick-head h2{font-family:var(--serif);font-size:clamp(30px,4vw,48px);line-height:1.02;margin-bottom:10px}
+.quick-head p{font-size:14px;color:var(--text2);line-height:1.6}
+.quick-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:920px){.quick-grid{grid-template-columns:repeat(3,1fr)}}
+.quick-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+  border:1px solid var(--line);border-radius:22px;padding:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+}
+.quick-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.quick-sublabel{font-size:12px;color:var(--text3);margin-bottom:14px}
+.quick-body{display:flex;gap:14px;align-items:center}
+.quick-copy{flex:1}
+.quick-title{font-family:var(--serif);font-size:24px;line-height:1.05;margin-bottom:10px}
+.quick-proof{font-size:13px;color:var(--text2);line-height:1.55;margin-bottom:10px}
+.quick-price{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.quick-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;font-size:14px;font-weight:800;box-shadow:0 12px 30px rgba(244,114,182,.25)}
+.quick-thumb{width:92px;flex-shrink:0;border-radius:18px;overflow:hidden;background:#fff}
+.quick-thumb img{width:100%;height:92px;object-fit:contain;padding:8px}
+@media(max-width:640px){
+  .quick-body{align-items:flex-start}
+  .quick-thumb{width:84px}
+  .quick-thumb img{height:84px}
 }
 
 /* ── Section wrapper ─────────────────────────────────────── */
@@ -711,8 +743,11 @@ body::before{
       <div class="hero-badge">Top coats that <strong>keep shine</strong> under phone lights</div>
     </div>
     <div class="hero-cta-wrap">
-      <a href="#picks" class="btn-primary">Show me the dark lineup →</a>
-      <span class="hero-cta-note">No signup needed · Amazon links</span>
+      <div class="hero-actions">
+        <a href="https://www.amazon.com/dp/B07VWL6DXB?tag=beautyfi06ecc-20" class="btn-primary" target="_blank" rel="nofollow noopener noreferrer" data-offer="hero_top_pick">Show me the dark lineup →</a>
+        <a href="#quick-picks" class="btn-secondary">Compare 3 best options</a>
+      </div>
+      <span class="hero-cta-note">Amazon opens in a new tab · start with one strong pick, not 10 options</span>
     </div>
   </div>
 </section>
@@ -720,6 +755,73 @@ body::before{
 <div class="disclosure wrap mt24" data-aos="fade-up">
   As an Amazon Associate, GlamFinds earns from qualifying purchases. Affiliate links may earn us a commission at no extra cost to you.
 </div>
+
+<!-- Quick picks -->
+<section class="quick-picks" id="quick-picks">
+  <div class="wrap">
+    <div class="quick-head" data-aos="fade-up">
+      <div class="quick-kicker">Fastest path to purchase</div>
+      <h2>Start with one winner. Compare only if you need a cheaper or deeper option.</h2>
+      <p>Cold traffic converts better when the first decision is simple. Start with the safest pick, then use the budget or premium lane only if that matches your intent.</p>
+    </div>
+    <div class="quick-grid">
+
+<article class="quick-card" data-aos="fade-up">
+  <div class="quick-label">Top Pick</div>
+  <div class="quick-sublabel">Start here if you want the safest first buy</div>
+  <div class="quick-body">
+    <div class="quick-copy">
+      <h3 class="quick-title">OPI Nail Lacquer Black Onyx</h3>
+      <p class="quick-proof">Forever repurchase SKU in pro and home kits.</p>
+      <div class="quick-price">$11.49</div>
+      <a href="https://www.amazon.com/dp/B07VWL6DXB?tag=beautyfi06ecc-20" class="quick-btn" target="_blank" rel="nofollow noopener noreferrer" data-offer="top_pick">
+        Check Amazon price →
+      </a>
+    </div>
+    <div class="quick-thumb">
+      <img src="https://m.media-amazon.com/images/I/61PCrN2Eg8S._AC_SL500_.jpg" alt="OPI Nail Lacquer Black Onyx" loading="lazy" width="160" height="160">
+    </div>
+  </div>
+</article>
+
+<article class="quick-card" data-aos="fade-up">
+  <div class="quick-label">Budget Pick</div>
+  <div class="quick-sublabel">Lower-friction entry if price matters first</div>
+  <div class="quick-body">
+    <div class="quick-copy">
+      <h3 class="quick-title">OPI Nail Lacquer Malaga Wine</h3>
+      <p class="quick-proof">One of OPI&#x27;s most reviewed shades ever.</p>
+      <div class="quick-price">$11.49</div>
+      <a href="https://www.amazon.com/dp/B071JCS34H?tag=beautyfi06ecc-20" class="quick-btn" target="_blank" rel="nofollow noopener noreferrer" data-offer="budget_pick">
+        Check Amazon price →
+      </a>
+    </div>
+    <div class="quick-thumb">
+      <img src="https://m.media-amazon.com/images/I/61hsT08MPbL._AC_SL500_.jpg" alt="OPI Nail Lacquer Malaga Wine" loading="lazy" width="160" height="160">
+    </div>
+  </div>
+</article>
+
+<article class="quick-card" data-aos="fade-up">
+  <div class="quick-label">Premium Pick</div>
+  <div class="quick-sublabel">Spend more only if you want the upgraded lane</div>
+  <div class="quick-body">
+    <div class="quick-copy">
+      <h3 class="quick-title">Beetles Black White Gel Polish Kit</h3>
+      <p class="quick-proof">Nail-art starter kits reference this duo.</p>
+      <div class="quick-price">$15.49</div>
+      <a href="https://www.amazon.com/dp/B0FKN9RJFJ?tag=beautyfi06ecc-20" class="quick-btn" target="_blank" rel="nofollow noopener noreferrer" data-offer="premium_pick">
+        Check Amazon price →
+      </a>
+    </div>
+    <div class="quick-thumb">
+      <img src="https://m.media-amazon.com/images/I/71hxm1UChBL._AC_SL500_.jpg" alt="Beetles Black White Gel Polish Kit" loading="lazy" width="160" height="160">
+    </div>
+  </div>
+</article>
+    </div>
+  </div>
+</section>
 
 <!-- Section 1: Featured Picks -->
 <section id="picks">
@@ -868,7 +970,7 @@ body::before{
 <div class="quiz-bar wrap" style="padding-top:40px;padding-bottom:40px">
   <div class="quiz-inner" data-aos="fade-up">
     <p class="quiz-text"><strong>Love the aesthetic but hate cleanup? 🤔</strong> We separated lacquer classics from gel systems so you can match your skill and your lamp setup.</p>
-    <a href="#picks" class="quiz-btn">Show dark lacquers →</a>
+    <a href="https://www.amazon.com/dp/B07VWL6DXB?tag=beautyfi06ecc-20" class="quiz-btn" target="_blank" rel="nofollow noopener noreferrer" data-offer="mid_top_pick">Show dark lacquers →</a>
   </div>
 </div>
 
@@ -950,26 +1052,9 @@ body::before{
     <div class="ow-emoji">🤔</div>
     <h2 class="ow-title">Overwhelmed by gels vs. lacquer?</h2>
     <p class="ow-text">Start with our #1 OPI black — brush skills only, no lamp. Add gel cat-eye and top coats when you&#x27;re ready to cure.</p>
-    <a href="#picks" class="btn-ow">Jump to the #1 dark pick →</a>
+    <a href="https://www.amazon.com/dp/B07VWL6DXB?tag=beautyfi06ecc-20" class="btn-ow" target="_blank" rel="nofollow noopener noreferrer" data-offer="overwhelmed_top_pick">Jump to the #1 dark pick →</a>
   </div>
 </div>
-
-<!-- Email -->
-<section class="email-block">
-  <div class="email-inner">
-    <div data-aos="fade-up">
-      <div class="email-emoji">📬</div>
-      <h2 class="email-title">Get the dark mani cleanup mini-guide — free</h2>
-      <p class="email-text">Cuticle barrier tricks, acetone ratios, and how to lift stains without wrecking skin — built for beginners who wear black weekly.</p>
-      <div class="email-form">
-        <input type="email" class="email-input" placeholder="Your email address" id="email-input">
-        <button class="btn-email" onclick="handleEmailSubmit()">Send it to me 📩</button>
-      </div>
-      <div class="email-note">1–2 emails per month. Unsubscribe anytime.</div>
-      <div class="email-success" id="email-success">You&#x27;re in — the cleanup guide is heading to your inbox.</div>
-    </div>
-  </div>
-</section>
 
 <hr class="divider wrap">
 
@@ -1102,6 +1187,23 @@ body::before{
   </div>
 </div>
 
+<!-- Email -->
+<section class="email-block">
+  <div class="email-inner">
+    <div data-aos="fade-up">
+      <div class="email-emoji">📬</div>
+      <h2 class="email-title">Get the dark mani cleanup mini-guide — free</h2>
+      <p class="email-text">Cuticle barrier tricks, acetone ratios, and how to lift stains without wrecking skin — built for beginners who wear black weekly.</p>
+      <div class="email-form">
+        <input type="email" class="email-input" placeholder="Your email address" id="email-input">
+        <button class="btn-email" onclick="handleEmailSubmit()">Send it to me 📩</button>
+      </div>
+      <div class="email-note">1–2 emails per month. Unsubscribe anytime.</div>
+      <div class="email-success" id="email-success">You&#x27;re in — the cleanup guide is heading to your inbox.</div>
+    </div>
+  </div>
+</section>
+
 <!-- Footer -->
 <footer class="footer">
   <p>© 2026 GlamFinds. As an Amazon Associate, we earn from qualifying purchases.</p>
@@ -1120,7 +1222,7 @@ body::before{
 
 <!-- Mobile sticky CTA -->
 <div class="mobile-cta">
-  <a href="#picks">Show best dark polish →</a>
+  <a href="https://www.amazon.com/dp/B07VWL6DXB?tag=beautyfi06ecc-20" target="_blank" rel="nofollow noopener noreferrer" data-offer="mobile_top_pick">Show best dark polish →</a>
 </div>
 
 <!-- Exit intent -->
