@@ -195,6 +195,8 @@ ul{list-style:none}
 .hero-badge strong{color:var(--gold)}
 .hero-cta-wrap{display:flex;flex-direction:column;align-items:center;gap:10px}
 .hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.hero-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:10px}
+.hero-trust-item{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:12px;font-weight:600;color:var(--text2)}
 .btn-primary{
   display:inline-flex;align-items:center;gap:10px;
   padding:18px 44px;
@@ -240,17 +242,21 @@ ul{list-style:none}
 .quick-head h2{font-family:var(--serif);font-size:clamp(30px,4vw,48px);line-height:1.02;margin-bottom:10px}
 .quick-head p{font-size:14px;color:var(--text2);line-height:1.6}
 .quick-grid{display:grid;grid-template-columns:1fr;gap:16px}
-@media(min-width:920px){.quick-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:920px){.quick-grid{grid-template-columns:1.45fr 1fr 1fr}}
 .quick-card{
   background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
   border:1px solid var(--line);border-radius:22px;padding:18px;
   box-shadow:0 20px 60px rgba(0,0,0,.18);
+  position:relative;
 }
+.quick-card--winner{border-color:var(--bord);box-shadow:0 24px 70px rgba(244,114,182,.16)}
+.quick-ribbon{position:absolute;top:14px;right:14px;padding:7px 11px;border-radius:999px;background:rgba(244,114,182,.16);border:1px solid rgba(244,114,182,.38);font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff}
 .quick-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
 .quick-sublabel{font-size:12px;color:var(--text3);margin-bottom:14px}
 .quick-body{display:flex;gap:14px;align-items:center}
 .quick-copy{flex:1}
-.quick-title{font-family:var(--serif);font-size:24px;line-height:1.05;margin-bottom:10px}
+.quick-title{font-family:var(--serif);font-size:24px;line-height:1.05;margin-bottom:10px;max-width:18ch}
+.quick-card--winner .quick-title{font-size:30px}
 .quick-proof{font-size:13px;color:var(--text2);line-height:1.55;margin-bottom:10px}
 .quick-price{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
 .quick-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;font-size:14px;font-weight:800;box-shadow:0 12px 30px rgba(244,114,182,.25)}
@@ -737,17 +743,22 @@ ul{list-style:none}
     <div class="hero-eyebrow">✦ Mood-board tested · 2026</div>
     <h1>Your Dark Mani Shouldn't<br>Look Like <em>Chalky Patchwork</em></h1>
     <p class="hero-pain">So you quit rebuying cheap blacks that stain skin and never reach that glassy, one-coat depth you see on Pinterest.</p>
-    <div class="hero-badges">
-      <div class="hero-badge">Stress-tested <strong>opaque</strong> darks and chromes</div>
-      <div class="hero-badge">Mixed <strong>OPI staples</strong> with gel value kits</div>
-      <div class="hero-badge">Top coats that <strong>keep shine</strong> under phone lights</div>
-    </div>
+      <div class="hero-badges">
+        <div class="hero-badge">Stress-tested <strong>opaque</strong> darks and chromes</div>
+        <div class="hero-badge">Mixed <strong>OPI staples</strong> with gel value kits</div>
+        <div class="hero-badge">Top coats that <strong>keep shine</strong> under phone lights</div>
+      </div>
     <div class="hero-cta-wrap">
       <div class="hero-actions">
         <a href="https://www.amazon.com/dp/B07VWL6DXB?tag=beautyfi06ecc-20" class="btn-primary" target="_blank" rel="nofollow noopener noreferrer" data-offer="hero_top_pick">Show me the dark lineup →</a>
         <a href="#quick-picks" class="btn-secondary">Compare 3 best options</a>
       </div>
       <span class="hero-cta-note">Amazon opens in a new tab · start with one strong pick, not 10 options</span>
+      <div class="hero-trust">
+        <div class="hero-trust-item">Top pick first</div>
+        <div class="hero-trust-item">Prime-friendly options</div>
+        <div class="hero-trust-item">Cold-traffic safe shortlist</div>
+      </div>
     </div>
   </div>
 </section>
@@ -762,11 +773,12 @@ ul{list-style:none}
     <div class="quick-head" data-aos="fade-up">
       <div class="quick-kicker">Fastest path to purchase</div>
       <h2>Start with one winner. Compare only if you need a cheaper or deeper option.</h2>
-      <p>Cold traffic converts better when the first decision is simple. Start with the safest pick, then use the budget or premium lane only if that matches your intent.</p>
+      <p>Cold traffic converts better when the first decision is simple. The first card is the safest first buy. Use budget or premium only if price or upgrade intent matters more than certainty.</p>
     </div>
     <div class="quick-grid">
 
-<article class="quick-card" data-aos="fade-up">
+<article class="quick-card quick-card--winner" data-aos="fade-up">
+  <div class="quick-ribbon">Best first buy</div>
   <div class="quick-label">Top Pick</div>
   <div class="quick-sublabel">Start here if you want the safest first buy</div>
   <div class="quick-body">
@@ -785,6 +797,7 @@ ul{list-style:none}
 </article>
 
 <article class="quick-card" data-aos="fade-up">
+  
   <div class="quick-label">Budget Pick</div>
   <div class="quick-sublabel">Lower-friction entry if price matters first</div>
   <div class="quick-body">
@@ -803,6 +816,7 @@ ul{list-style:none}
 </article>
 
 <article class="quick-card" data-aos="fade-up">
+  
   <div class="quick-label">Premium Pick</div>
   <div class="quick-sublabel">Spend more only if you want the upgraded lane</div>
   <div class="quick-body">
